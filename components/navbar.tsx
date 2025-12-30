@@ -39,7 +39,7 @@ export function Navbar() {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <Image
-              src="/favicon/android-chrome-192x192"
+              src="/favicon/android-chrome-192x192.png"
               alt="Papi Map Logo"
               width={32}
               height={32}
