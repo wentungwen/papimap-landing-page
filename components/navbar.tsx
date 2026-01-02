@@ -6,7 +6,11 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-export function Navbar() {
+interface NavbarProps {
+  onOpenForm?: () => void;
+}
+
+export function Navbar({ onOpenForm }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -55,21 +59,21 @@ export function Navbar() {
             <a
               href="#how-it-works"
               onClick={(e) => handleNavClick(e, "#how-it-works")}
-              className="text-sm font-medium text-slate-600 hover:text-[#8DC4DA] transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-secondary transition-colors"
             >
               How it Works
             </a>
             <a
               href="#map-demos"
               onClick={(e) => handleNavClick(e, "#map-demos")}
-              className="text-sm font-medium text-slate-600 hover:text-[#8DC4DA] transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-secondary transition-colors"
             >
               Map Demos
             </a>
             <a
               href="#pricing"
               onClick={(e) => handleNavClick(e, "#pricing")}
-              className="text-sm font-medium text-slate-600 hover:text-[#8DC4DA] transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-secondary transition-colors"
             >
               Pricing
             </a>
@@ -79,16 +83,24 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             {/* Desktop CTA Button */}
             <Button
-              onClick={scrollToTop}
+              onClick={() => {
+                if (onOpenForm) {
+                  onOpenForm();
+                } else {
+                  scrollToTop();
+                }
+              }}
               className="hidden sm:flex rounded-full font-semibold text-slate-900 transition-colors"
               style={{ 
-                backgroundColor: "#F2BD50",
+                backgroundColor: "var(--primary)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#e0ac40";
+                e.currentTarget.style.backgroundColor = "var(--primary)";
+                e.currentTarget.style.opacity = "0.9";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#F2BD50";
+                e.currentTarget.style.backgroundColor = "var(--primary)";
+                e.currentTarget.style.opacity = "1";
               }}
             >
               Get Early Access
@@ -135,7 +147,14 @@ export function Navbar() {
                 Pricing
               </a>
               <Button
-                onClick={scrollToTop}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenForm) {
+                    onOpenForm();
+                  } else {
+                    scrollToTop();
+                  }
+                }}
                 className="w-full rounded-full font-semibold text-slate-900 mt-2 transition-colors"
                 style={{ 
                   backgroundColor: "#F2BD50",

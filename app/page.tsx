@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      <Navbar onOpenForm={() => setIsFormOpen(true)} />
       {/* Hero Section */}
       <section
         id="hero"
@@ -41,7 +41,7 @@ export default function Home() {
       >
         {/* Background Map Image Placeholder */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#8DC4DA]/20 via-white to-[#F2BD50]/10"
+          className="absolute inset-0 bg-gradient-to-br from-[var(--secondary)]/20 via-white to-[var(--primary)]/10"
           style={{
             backgroundImage: "url('/landing-images/landing.jpg')",
             backgroundSize: "cover",
@@ -59,7 +59,7 @@ export default function Home() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
-              Create pretty interactive maps easily
+              Create pretty illustrated maps easily
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
               Design cute and professional maps that match your brand, without
@@ -72,8 +72,8 @@ export default function Home() {
                 size="lg"
                 className="h-12 px-8 text-base font-semibold"
                 style={{
-                  backgroundColor: "#F2BD50",
-                  color: "#1a1a1a",
+                  backgroundColor: "var(--primary)",
+                  color: "var(--primary-foreground)",
                 }}
                 onClick={() => setIsFormOpen(true)}
               >
@@ -81,11 +81,13 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
-            
+
             {/* Tally Form Modal */}
             <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
               <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                <DialogTitle className="sr-only">Join Papimap Waitlist</DialogTitle>
+                <DialogTitle className="sr-only">
+                  Join Papimap Waitlist
+                </DialogTitle>
                 <div className="p-4">
                   <TallyForm />
                 </div>
@@ -98,7 +100,7 @@ export default function Home() {
       {/* How-To Section */}
       <section
         id="how-it-works"
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[#F2BD50]/5"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--primary)]/5"
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -234,7 +236,7 @@ export default function Home() {
                         </DialogDescription>
                       </div>
                       <Button
-                        onClick={scrollToTop}
+                        onClick={() => setIsFormOpen(true)}
                         className="w-full rounded-full font-semibold text-base py-6"
                         style={{
                           backgroundColor: "#F2BD50",
@@ -266,7 +268,7 @@ export default function Home() {
       {/* Pricing Section */}
       <section
         id="pricing"
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[#8DC4DA]/10"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--secondary)]/10"
       >
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -305,23 +307,23 @@ export default function Home() {
               <CardContent>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">
                       Standard Asset Library (200+ items)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">
                       Export up to 2K resolution
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">Personal Use License</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">Watermarked exports</span>
                   </li>
                 </ul>
@@ -331,11 +333,11 @@ export default function Home() {
             {/* Founder's Deal Card - Highlighted */}
             <Card
               className="border-2 relative"
-              style={{ borderColor: "#F2BD50" }}
+              style={{ borderColor: "var(--primary)" }}
             >
               <div
                 className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-sm font-semibold text-white"
-                style={{ backgroundColor: "#F2BD50" }}
+                style={{ backgroundColor: "var(--primary)" }}
               >
                 Waitlist Exclusive
               </div>
@@ -361,23 +363,23 @@ export default function Home() {
               <CardContent>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">Lifetime Access</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">Commercial License</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">SVG / Vector Export</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">8K Ultra-Res Print</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-[#8DC4DA] mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">
                       Priority Feature Requests
                     </span>
@@ -411,9 +413,14 @@ export default function Home() {
               <div className="flex items-center gap-2 mb-4">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: "#F2BD50" }}
                 >
-                  <MapPin className="h-6 w-6 text-white" />
+                  <Image
+                    src="/favicon/android-chrome-192x192.png"
+                    alt="Papi Map Logo"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8"
+                  />
                 </div>
                 <span
                   className="text-xl font-bold text-gray-900"
@@ -423,18 +430,17 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-sm text-gray-600">
-                The map builder for creators
+                The pretty illustrated map builder for creators and businesses.
               </p>
             </div>
 
             {/* Links */}
             <div>
-              <h4 className="font-semibold mb-4 text-gray-900">Support</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
                   <a
                     href="#"
-                    className="hover:text-[#8DC4DA] transition-colors"
+                    className="hover:text-secondary transition-colors"
                   >
                     Help Center
                   </a>
@@ -442,7 +448,7 @@ export default function Home() {
                 <li>
                   <a
                     href="#"
-                    className="hover:text-[#8DC4DA] transition-colors"
+                    className="hover:text-secondary transition-colors"
                   >
                     Contact Us
                   </a>
@@ -451,12 +457,11 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 text-gray-900">Company</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
                   <a
                     href="#"
-                    className="hover:text-[#8DC4DA] transition-colors"
+                    className="hover:text-secondary transition-colors"
                   >
                     Roadmap
                   </a>
@@ -464,7 +469,7 @@ export default function Home() {
                 <li>
                   <a
                     href="#"
-                    className="hover:text-[#8DC4DA] transition-colors"
+                    className="hover:text-secondary transition-colors"
                   >
                     About
                   </a>
