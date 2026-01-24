@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Check, ArrowRight, Github, Twitter } from "lucide-react";
+import { MapPin, Check, ArrowRight, Github, Twitter, Info } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +19,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Navbar } from "@/components/navbar";
 import { mapShowcases, howToSteps } from "@/data/landing-data";
 import { TallyForm } from "@/components/tally-form";
@@ -37,7 +43,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="hero"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center overflow-hidden"
       >
         {/* Background Map Image Placeholder */}
         <div
@@ -49,11 +55,12 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-2xl"
           >
             <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900"
@@ -61,13 +68,13 @@ export default function Home() {
             >
               Create pretty illustrated maps easily
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 mb-12">
               Design cute and professional maps that match your brand, without
               the design studio price tag. For weddings, events, or tourism.{" "}
             </p>
 
             {/* CTA Button */}
-            <div className="flex justify-center">
+            <div className="flex">
               <Button
                 size="lg"
                 className="h-12 px-8 text-base font-semibold"
@@ -117,11 +124,11 @@ export default function Home() {
               How It Works
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Create beautiful illustrated maps in 3 simple steps
+              Create beautiful illustrated maps in 4 simple steps
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
             {howToSteps.map((step, index) => {
               return (
                 <motion.div
@@ -268,138 +275,277 @@ export default function Home() {
       {/* Pricing Section */}
       <section
         id="pricing"
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--secondary)]/10"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--primary)]/5"
       >
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-6"
           >
             <h2
               className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
-              Simple pricing coming soon.
+              Choose Your Creative Fuel
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Join the waitlist today to secure our exclusive Founder&apos;s
-              Deal and avoid monthly fees forever.
+              Simple pricing. Full commercial freedom. No subscriptions.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Free Card */}
-            <Card className="border-2">
-              <CardHeader>
-                <CardTitle
-                  className="text-2xl"
-                  style={{ fontFamily: "var(--font-nunito)" }}
-                >
-                  The Free Starter
-                </CardTitle>
-                <CardDescription className="text-3xl font-bold text-gray-900 mt-4">
-                  Free
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">
-                      Standard Asset Library (200+ items)
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">
-                      Export up to 2K resolution
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">Personal Use License</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">Watermarked exports</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Founder's Deal Card - Highlighted */}
-            <Card
-              className="border-2 relative"
-              style={{ borderColor: "var(--primary)" }}
+          {/* Three Column Pricing Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-16">
+            {/* Free (The Explorer) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
+              <Card className="relative h-full flex flex-col border-2 border-gray-200 hover:border-gray-300 transition-all duration-300">
+                <CardHeader className="text-center pb-8">
+                  <CardTitle
+                    className="text-2xl mb-2"
+                    style={{ fontFamily: "var(--font-nunito)" }}
+                  >
+                    Free
+                  </CardTitle>
+                  <div className="text-sm text-gray-600 mb-4">The Explorer</div>
+                  <div className="flex items-baseline justify-center gap-1 mb-2">
+                    <span className="text-5xl font-bold text-gray-900">€0</span>
+                    <span className="text-lg text-gray-500">/50 credits</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium flex items-center gap-1.5">
+                        50 Trial Credits
+                        <TooltipProvider delayDuration={0}>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Info className="h-4 w-4 text-gray-400 cursor-help" />
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-gray-900 text-white border-gray-800">
+                              <div className="text-xs space-y-1">
+                                <div>🎨 Create Landmark: 20 Pts</div>
+                                <div>🗺️ Vectorize Base Map: 20 Pts</div>
+                                <div>📥 Final Export: 100 Pts</div>
+                              </div>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">
+                        200+ Asset Library
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">
+                        Watermarked Exports
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Personal Use Only</span>
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter className="pt-6">
+                  <Button
+                    onClick={() => setIsFormOpen(true)}
+                    variant="outline"
+                    className="w-full h-12 text-base font-semibold border-2 hover:bg-gray-50"
+                  >
+                    Start Drawing
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+
+            {/* Starter (The Maker) - HIGHLIGHTED */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              {/* Glow Effect */}
               <div
-                className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-sm font-semibold text-white"
-                style={{ backgroundColor: "var(--primary)" }}
+                className="absolute -inset-1 rounded-2xl opacity-75 blur-lg"
+                style={{
+                  background:
+                    "linear-gradient(135deg, var(--primary), var(--secondary))",
+                }}
+              />
+
+              <Card className="relative h-full flex flex-col border-2 bg-white shadow-xl"
+                style={{ borderColor: "var(--primary)" }}
               >
-                Waitlist Exclusive
-              </div>
-              <CardHeader>
-                <CardTitle
-                  className="text-2xl"
-                  style={{ fontFamily: "var(--font-nunito)" }}
-                >
-                  The Founder&apos;s Deal
-                </CardTitle>
-                <div className="mt-4">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-gray-900">
-                      $69
-                    </span>
-                    <span className="text-gray-600">/ one-time</span>
-                  </div>
-                  <div className="text-sm text-gray-500 line-through mt-1">
-                    $108/year
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">Lifetime Access</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">Commercial License</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">SVG / Vector Export</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">8K Ultra-Res Print</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">
-                      Priority Feature Requests
-                    </span>
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  onClick={scrollToTop}
-                  className="w-full"
-                  size="lg"
+                {/* Best Value Badge */}
+                <div
+                  className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full text-sm font-bold shadow-lg z-10 flex items-center gap-2"
                   style={{
-                    backgroundColor: "#F2BD50",
+                    backgroundColor: "var(--primary)",
                     color: "#1a1a1a",
                   }}
                 >
-                  Join Waitlist to Lock This Price
-                </Button>
-              </CardFooter>
-            </Card>
+                  <span className="text-lg">🏆</span>
+                  <span>Best Value</span>
+                </div>
+                <CardHeader className="text-center pb-8 pt-8">
+                  <CardTitle
+                    className="text-2xl mb-2"
+                    style={{ fontFamily: "var(--font-nunito)" }}
+                  >
+                    Starter
+                  </CardTitle>
+                  <div className="text-sm text-gray-600 mb-4">The Maker</div>
+                  <div className="flex items-baseline justify-center gap-1 mb-2">
+                    <span className="text-5xl font-bold text-gray-900">€10</span>
+                    <span className="text-lg text-gray-500">/1,000 credits</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium flex items-center gap-1.5">
+                        1,000 Credits
+                        <TooltipProvider delayDuration={0}>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Info className="h-4 w-4 text-gray-400 cursor-help" />
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-gray-900 text-white border-gray-800">
+                              <div className="text-xs space-y-1">
+                                <div>🎨 Create Landmark: 20 Pts</div>
+                                <div>🗺️ Vectorize Base Map: 20 Pts</div>
+                                <div>📥 Final Export: 100 Pts</div>
+                              </div>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Commercial License</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">
+                        Standard High-Res Exports
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                        <span className="text-gray-400">~</span>
+                      </div>
+                      <span className="text-gray-600 text-sm">
+                        ~2 Full Map Projects
+                      </span>
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter className="pt-6">
+                  <Button
+                    onClick={() => setIsFormOpen(true)}
+                    className="w-full h-12 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                    style={{
+                      backgroundColor: "var(--primary)",
+                      color: "#1a1a1a",
+                    }}
+                  >
+                    Get Best Value
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+
+            {/* Creator (The Studio) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <Card className="relative h-full flex flex-col border-2 border-gray-200 hover:border-gray-300 transition-all duration-300">
+                <CardHeader className="text-center pb-8">
+                  <CardTitle
+                    className="text-2xl mb-2"
+                    style={{ fontFamily: "var(--font-nunito)" }}
+                  >
+                    Creator
+                  </CardTitle>
+                  <div className="text-sm text-gray-600 mb-4">The Studio</div>
+                  <div className="flex items-baseline justify-center gap-1 mb-2">
+                    <span className="text-5xl font-bold text-gray-900">€20</span>
+                    <span className="text-lg text-gray-500">/3,000 credits</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium flex items-center gap-1.5">
+                        3,000 Credits
+                        <TooltipProvider delayDuration={0}>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Info className="h-4 w-4 text-gray-400 cursor-help" />
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-gray-900 text-white border-gray-800">
+                              <div className="text-xs space-y-1">
+                                <div>🎨 Create Landmark: 20 Pts</div>
+                                <div>🗺️ Vectorize Base Map: 20 Pts</div>
+                                <div>📥 Final Export: 100 Pts</div>
+                              </div>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Commercial License</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">
+                        Standard High-Res Exports
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                        <span className="text-gray-400">~</span>
+                      </div>
+                      <span className="text-gray-600 text-sm">
+                        ~7 Full Map Projects
+                      </span>
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter className="pt-6">
+                  <Button
+                    onClick={() => setIsFormOpen(true)}
+                    variant="outline"
+                    className="w-full h-12 text-base font-semibold border-2 hover:bg-gray-50"
+                  >
+                    Get Started
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </section>
