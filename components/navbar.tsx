@@ -34,17 +34,17 @@ export function Navbar({ onOpenForm }: NavbarProps) {
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-16 xl:px-24">
         <div className="flex items-center justify-between h-16">
           {/* Left: Brand Logo */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             onClick={scrollToTop}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <Image
               src="/favicon/android-chrome-192x192.png"
-              alt="Papi Map Logo"
+              alt="Papimap Logo"
               width={32}
               height={32}
               className="w-8 h-8"
@@ -91,7 +91,7 @@ export function Navbar({ onOpenForm }: NavbarProps) {
                 }
               }}
               className="hidden sm:flex rounded-full font-semibold text-slate-900 transition-colors"
-              style={{ 
+              style={{
                 backgroundColor: "var(--primary)",
               }}
               onMouseEnter={(e) => {
@@ -156,7 +156,7 @@ export function Navbar({ onOpenForm }: NavbarProps) {
                   }
                 }}
                 className="w-full rounded-full font-semibold text-slate-900 mt-2 transition-colors"
-                style={{ 
+                style={{
                   backgroundColor: "#F2BD50",
                 }}
                 onMouseEnter={(e) => {

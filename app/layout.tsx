@@ -15,7 +15,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Papi Map - The Map Builder for Creators",
+  title: "Papimap - The Map Builder for Creators",
   description: "Design professional, print-ready maps in minutes. From Amsterdam to your local wedding venue.",
 };
 
