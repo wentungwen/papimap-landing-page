@@ -323,60 +323,46 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <Card className="relative h-full flex flex-col border-2 border-gray-200 hover:border-gray-300 transition-all duration-300">
-                <CardHeader className="text-center pb-8">
+                <CardHeader className="text-center pb-4 sm:pb-8">
                   <CardTitle
-                    className="text-2xl mb-2"
+                    className="text-lg sm:text-2xl mb-1 sm:mb-2"
                     style={{ fontFamily: "var(--font-nunito)" }}
                   >
                     Free
                   </CardTitle>
-                  <div className="text-sm text-gray-600 mb-4">The Explorer</div>
+                  <div className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">The Explorer</div>
                   <div className="flex items-baseline justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-gray-900">€0</span>
-                    <span className="text-lg text-gray-500">/50 credits</span>
+                    <span className="text-3xl sm:text-5xl font-bold text-gray-900">€0</span>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs sm:text-lg text-gray-500">/50 credits</span>
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 font-medium flex items-center gap-1.5">
-                        50 Trial Credits
-                        <TooltipProvider delayDuration={0}>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <Info className="h-4 w-4 text-gray-400 cursor-help" />
-                            </TooltipTrigger>
-                            <TooltipContent className="bg-gray-900 text-white border-gray-800">
-                              <div className="text-xs space-y-1">
-                                <div>🎨 Create Landmark: 20 Pts</div>
-                                <div>🗺️ Vectorize Base Map: 20 Pts</div>
-                                <div>📥 Final Export: 100 Pts</div>
-                              </div>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </span>
+                  <ul className="space-y-2 sm:space-y-4">
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700 font-medium">50 Trial Credits</span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">200+ Asset Library</span>
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700">200+ Asset Library</span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Watermarked Exports</span>
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700">Watermarked Exports</span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Personal Use Only</span>
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700">Personal Use Only</span>
                     </li>
                   </ul>
                 </CardContent>
-                <CardFooter className="pt-6">
+                <CardFooter className="pt-3 sm:pt-6">
                   <Button
                     onClick={() => setIsFormOpen(true)}
                     variant="outline"
-                    className="w-full h-12 text-base font-semibold border-2 hover:bg-gray-50"
+                    className="w-full h-10 sm:h-12 text-xs sm:text-base font-semibold border-2 hover:bg-gray-50"
                   >
                     Get Started
                   </Button>
@@ -407,76 +393,62 @@ export default function Home() {
               >
                 {/* Best Value Badge */}
                 <div
-                  className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full text-sm font-bold shadow-lg z-10 flex items-center gap-2"
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-6 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg z-10 flex items-center gap-2"
                   style={{
                     backgroundColor: "var(--primary)",
                     color: "#1a1a1a",
                   }}
                 >
-                  <span className="text-lg">🏆</span>
+                  <span className="text-sm sm:text-lg">🏆</span>
                   <span>Best Value</span>
                 </div>
-                <CardHeader className="text-center pb-8 pt-8">
+                <CardHeader className="text-center pb-4 sm:pb-8 pt-6 sm:pt-8">
                   <CardTitle
-                    className="text-2xl mb-2"
+                    className="text-lg sm:text-2xl mb-1 sm:mb-2"
                     style={{ fontFamily: "var(--font-nunito)" }}
                   >
                     Starter
                   </CardTitle>
-                  <div className="text-sm text-gray-600 mb-4">The Maker</div>
+                  <div className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">The Maker</div>
                   <div className="flex items-baseline justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-gray-900">
+                    <span className="text-3xl sm:text-5xl font-bold text-gray-900">
                       €10
                     </span>
-                    <span className="text-lg text-gray-500">
-                      /1,000 credits
-                    </span>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs sm:text-lg text-gray-500">
+                        /1,000 credits
+                      </span>
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 font-medium flex items-center gap-1">
-                        1,000 Credits for landmark creation and map exports
-                        <TooltipProvider delayDuration={0}>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <Info className="h-5 w-5 text-gray-400 cursor-help flex-shrink-0" />
-                            </TooltipTrigger>
-                            <TooltipContent className="bg-gray-900 text-white border-gray-800">
-                              <div className="text-xs space-y-1">
-                                <div>🎨 Create Landmark: 20 Pts</div>
-                                <div>🗺️ Vectorize Base Map: 20 Pts</div>
-                                <div>📥 Final Export: 100 Pts</div>
-                              </div>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </span>
+                  <ul className="space-y-2 sm:space-y-4">
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700 font-medium">1,000 Credits for landmark creation and map exports</span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Commercial License</span>
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700">Commercial License</span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700">
                         Standard High-Res Exports
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600 text-sm">
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-600">
                         ~2 Full Map Projects with 15-20 landmarks each
                       </span>
                     </li>
                   </ul>
                 </CardContent>
-                <CardFooter className="pt-6">
+                <CardFooter className="pt-3 sm:pt-6">
                   <Button
                     onClick={() => setIsFormOpen(true)}
-                    className="w-full h-12 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="w-full h-10 sm:h-12 text-xs sm:text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300"
                     style={{
                       backgroundColor: "var(--primary)",
                       color: "#1a1a1a",
@@ -496,68 +468,54 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Card className="relative h-full flex flex-col border-2 border-gray-200 hover:border-gray-300 transition-all duration-300">
-                <CardHeader className="text-center pb-8">
+                <CardHeader className="text-center pb-4 sm:pb-8">
                   <CardTitle
-                    className="text-2xl mb-2"
+                    className="text-lg sm:text-2xl mb-1 sm:mb-2"
                     style={{ fontFamily: "var(--font-nunito)" }}
                   >
                     Creator
                   </CardTitle>
-                  <div className="text-sm text-gray-600 mb-4">The Studio</div>
+                  <div className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">The Studio</div>
                   <div className="flex items-baseline justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-gray-900">
+                    <span className="text-3xl sm:text-5xl font-bold text-gray-900">
                       €20
                     </span>
-                    <span className="text-lg text-gray-500">
-                      /3,000 credits
-                    </span>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs sm:text-lg text-gray-500">
+                        /3,000 credits
+                      </span>
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 font-medium flex items-center gap-1.5">
-                        3,000 Credits for landmark creation and map exports
-                        <TooltipProvider delayDuration={0}>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <Info className="h-4 w-4 text-gray-400 cursor-help" />
-                            </TooltipTrigger>
-                            <TooltipContent className="bg-gray-900 text-white border-gray-800">
-                              <div className="text-xs space-y-1">
-                                <div>🎨 Create Landmark: 20 Pts</div>
-                                <div>🗺️ Vectorize Base Map: 20 Pts</div>
-                                <div>📥 Final Export: 100 Pts</div>
-                              </div>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </span>
+                  <ul className="space-y-2 sm:space-y-4">
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700 font-medium">3,000 Credits for landmark creation and map exports</span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Commercial License</span>
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700">Commercial License</span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-700">
                         Standard High-Res Exports
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600 text-sm">
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <Check className="h-4 sm:h-5 w-4 sm:w-5 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-600">
                         ~7 Full Map Projects
                       </span>
                     </li>
                   </ul>
                 </CardContent>
-                <CardFooter className="pt-6">
+                <CardFooter className="pt-3 sm:pt-6">
                   <Button
                     onClick={() => setIsFormOpen(true)}
                     variant="outline"
-                    className="w-full h-12 text-base font-semibold border-2 hover:bg-gray-50"
+                    className="w-full h-10 sm:h-12 text-xs sm:text-base font-semibold border-2 hover:bg-gray-50"
                   >
                     Get Started
                   </Button>
