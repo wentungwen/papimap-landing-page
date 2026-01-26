@@ -568,6 +568,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="bg-white">
+        <div className="flex flex-col md:flex-row min-h-[600px]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col md:flex-row w-full min-h-[600px]"
+          >
+            {/* Image */}
+            <div className="w-full md:w-4/10 md:order-first overflow-hidden h-full">
+              <Image
+                src="/landing-images/about-image.jpg"
+                alt="About Papimap"
+                width={400}
+                height={400}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="w-full md:w-6/10 md:order-last px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-0 flex flex-col justify-center">
+              <h2
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
+                style={{ fontFamily: "var(--font-nunito)" }}
+              >
+                About Papimap
+              </h2>
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                <p>
+                  Papimap is an illustrated map builder made for people who want maps that actually look good.
+                </p>
+                <p>
+                  Instead of cold, technical maps, Papimap helps you create cute, flat-style illustrated maps using houses, tents, landmarks, and other charming assets. You can highlight important places, add labels and titles, and export everything as print-ready files, perfect for posters, flyers, welcome guides, or wall art.
+                </p>
+                <p>
+                  It's built for Airbnb hosts, small hotels, event organizers, local guides, and tourism teams who need clear, friendly maps without learning complicated software.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
@@ -592,7 +637,7 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-sm text-gray-600">
-                The pretty illustrated map builder for creators and businesses.
+                The pretty illustrated map builder for real places. No design skills needed!
               </p>
             </div>
 
