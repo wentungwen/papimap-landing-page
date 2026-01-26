@@ -2,26 +2,26 @@
 export const mapShowcases = [
   {
     id: 1,
-    title: "Adventure Retreat Map",
-    description: "A friendly resort map guiding guests to cabins, amenities, and lake access points.",
+    title: "Rotterdam City Explorer",
+    description: "A high-density urban guide designed for sightseeing efficiency. Featuring 11 key landmarks—from modern architecture to historic ports—on a clean, high-contrast base map.",
     image: "/landing-images/demos/demo-1.jpg",
   },
   {
     id: 2,
-    title: "Wedding Itinerary",
-    description: "A romantic, pastel map for invitations showing the route between ceremony and reception venues. Created for wedding invitations... Printed on A5 textured cardstock.",
+    title: "Frankfurt Academic & Heritage Loop",
+    description: "A minimalist local guide focusing on the city's intellectual and spiritual heart. Perfectly balances university hubs with historic churches for a targeted neighborhood experience.",
     image: "/landing-images/demos/demo-2.jpg",
   },
   {
     id: 3,
-    title: "Airbnb Host Guide",
-    description: "A charming neighborhood map highlighting local favorites like top coffee shops and nearby transit.",
+    title: "Maastricht Transit & History Guide",
+    description: "Starting from the Central Station, this map bridges the gap between modern transit and ancient history, highlighting iconic forts and tourist hotspots for travelers on foot.",
     image: "/landing-images/demos/demo-3.jpg",
   },
   {
     id: 4,
-    title: "Tourism map for a hotel in Taipei",
-    description: "A tourism map for a hotel in Taipei, highlighting local attractions and landmarks.",
+    title: "Taipei Boutique Hotel Concierge",
+    description: "A curated hospitality map designed to help guests navigate local gems. Focuses on 'walkable' landmarks and cultural attractions within the hotel's immediate vicinity.",
     image: "/landing-images/demos/demo-4.jpg",
   }
 ];

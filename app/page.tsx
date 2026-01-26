@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Check, ArrowRight, Instagram, Info } from "lucide-react";
+import { Check, ArrowRight, Instagram, Info } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -33,17 +32,13 @@ import { useState } from "react";
 export default function Home() {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <div className="min-h-screen bg-white">
       <Navbar onOpenForm={() => setIsFormOpen(true)} />
       {/* Hero Section */}
       <section
         id="hero"
-        className="relative min-h-screen flex items-center overflow-hidden"
+        className="relative min-h-screen flex items-start pt-[10%] overflow-hidden"
       >
         {/* Background Map Image Placeholder */}
         <div
@@ -54,13 +49,22 @@ export default function Home() {
             backgroundPosition: "center",
           }}
         />
+        {/* Mobile Background Map Image */}
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[var(--secondary)]/20 via-white to-[var(--primary)]/10 md:hidden"
+          style={{
+            backgroundImage: "url('/landing-images/mobile-landing.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
 
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-16 xl:px-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-2xl"
+            className="max-w-2xl text-center md:text-left mx-auto md:mx-0"
           >
             <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900"
@@ -68,13 +72,13 @@ export default function Home() {
             >
               Create pretty illustrated maps easily
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6">
               Design cute and professional maps that match your brand, without
               the design studio price tag. For weddings, events, or tourism.{" "}
             </p>
 
             {/* CTA Button */}
-            <div className="flex">
+            <div className="flex justify-center md:justify-start">
               <Button
                 size="lg"
                 className="h-12 px-8 text-base font-semibold"
@@ -118,12 +122,12 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2
-              className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
               How It Works
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-base md:text-xl text-gray-600 max-w-2xl mx-auto">
               Create beautiful illustrated maps in 4 simple steps
             </p>
           </motion.div>
@@ -180,12 +184,12 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2
-              className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
               Explore Maps Created with Our Builder
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-base md:text-xl text-gray-600 max-w-2xl mx-auto">
               Click on any map to see how it was made and the features used.
             </p>
           </motion.div>
@@ -286,12 +290,12 @@ export default function Home() {
             className="text-center mb-6"
           >
             <h2
-              className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
               Choose Your Creative Fuel
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-base md:text-xl text-gray-600 max-w-2xl mx-auto">
               Simple pricing. Full commercial freedom. No subscriptions.
             </p>
           </motion.div>
@@ -615,6 +619,9 @@ export default function Home() {
                   <Instagram className="h-5 w-5" />
                 </a>
               </div>
+              <p className="text-xs text-gray-500 mt-3">
+                Join the r/illustratedmap on Reddit for more pretty map!
+              </p>
             </div>
           </div>
 
