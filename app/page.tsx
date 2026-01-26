@@ -73,7 +73,7 @@ export default function Home() {
               Pretty maps <br/> <span style={{ fontFamily: "'Satisfy', cursive", color: "var(--destructive)" }}>made easy</span>
             </h1>
             <p className="text-2xl sm:text-2xl md:text-xl text-gray-600 mb-6 max-w-xs md:max-w-none mx-auto md:mx-0">
-              Design custom illustrated maps for weddings, events & tourism
+              Design custom illustrated maps for weddings, events & tourism. <b>Launching soon on February, 2026!</b>
             </p>
 
             {/* CTA Button */}
@@ -563,7 +563,7 @@ export default function Home() {
                   Instead of cold, technical maps, Papimap helps you create cute, flat-style illustrated maps using houses, tents, landmarks, and other charming assets. You can highlight important places, add labels and titles, and export everything as print-ready files, perfect for posters, flyers, welcome guides, or wall art.
                 </p>
                 <p>
-                  It's built for Airbnb hosts, small hotels, event organizers, local guides, and tourism teams who need clear, friendly maps without learning complicated software.
+                  It&apos;s built for Airbnb hosts, small hotels, event organizers, local guides, and tourism teams who need clear, friendly maps without learning complicated software.
                 </p>
               </div>
             </div>
