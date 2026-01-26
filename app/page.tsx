@@ -38,7 +38,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="hero"
-        className="relative min-h-screen flex items-start pt-[10%] overflow-hidden"
+        className="relative min-h-screen flex items-start pt-[15%] overflow-hidden"
       >
         {/* Background Map Image Placeholder */}
         <div
@@ -64,24 +64,23 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-2xl text-center md:text-left mx-auto md:mx-0"
+            className="max-w-lg text-center md:text-left mx-auto md:mx-0 mt-8 md:mt-0"
           >
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900"
+              className="text-5xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
-              Create pretty illustrated maps easily
+              Pretty maps <br/> <span style={{ fontFamily: "'Satisfy', cursive", color: "var(--destructive)" }}>made easy</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6">
-              Design cute and professional maps that match your brand, without
-              the design studio price tag. For weddings, events, or tourism.{" "}
+            <p className="text-2xl sm:text-2xl md:text-xl text-gray-600 mb-6 max-w-xs md:max-w-none mx-auto md:mx-0">
+              Design custom illustrated maps for weddings, events & tourism
             </p>
 
             {/* CTA Button */}
             <div className="flex justify-center md:justify-start">
               <Button
                 size="lg"
-                className="h-12 px-8 text-base font-semibold"
+                className="h-14 px-10 text-lg font-bold"
                 style={{
                   backgroundColor: "var(--primary)",
                   color: "var(--primary-foreground)",
@@ -226,26 +225,51 @@ export default function Home() {
                     </div>
                   </motion.div>
                 </DialogTrigger>
-                <DialogContent className="w-full sm:max-w-[90vw] max-h-[90vh] overflow-hidden p-0">
+                <DialogContent className="w-full sm:max-w-[90vw] max-h-[95vh] overflow-y-auto p-0">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.2 }}
-                    className="flex flex-col md:flex-row h-full"
+                    className="flex flex-col md:flex-row w-full"
                   >
-                    {/* Left: Text Content */}
-                    <div className="flex flex-col justify-center space-y-6 p-8 md:p-12 md:w-1/3">
-                      <div>
+                    {/* Mobile Title Section */}
+                    <div className="md:hidden p-6 pb-4 border-b w-full">
+                      <DialogTitle
+                        className="text-2xl font-bold text-gray-900"
+                        style={{ fontFamily: "var(--font-nunito)" }}
+                      >
+                        {map.title}
+                      </DialogTitle>
+                    </div>
+
+                    {/* Image - second on mobile, last on desktop */}
+                    <div className="relative w-full md:w-2/3 bg-gray-50 order-2 md:order-last">
+                      <Image
+                        src={map.image}
+                        alt={map.title}
+                        width={800}
+                        height={1000}
+                        className="w-full h-auto object-contain p-2 md:p-4"
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                      />
+                    </div>
+
+                    {/* Description and Button - third on mobile, first on desktop */}
+                    <div className="flex flex-col justify-start md:justify-center space-y-6 p-6 md:p-12 w-full md:w-1/3 order-3 md:order-first">
+                      {/* Desktop Title */}
+                      <div className="hidden md:block">
                         <DialogTitle
-                          className="text-3xl md:text-4xl font-bold mb-4 text-gray-900"
+                          className="text-4xl font-bold mb-4 text-gray-900"
                           style={{ fontFamily: "var(--font-nunito)" }}
                         >
                           {map.title}
                         </DialogTitle>
-                        <DialogDescription className="text-base md:text-lg text-gray-600 leading-relaxed">
-                          {map.description}
-                        </DialogDescription>
                       </div>
+
+                      <DialogDescription className="text-base md:text-lg text-gray-600 leading-relaxed">
+                        {map.description}
+                      </DialogDescription>
+
                       <Button
                         onClick={() => setIsFormOpen(true)}
                         className="w-full rounded-full font-semibold text-base py-6"
@@ -256,17 +280,6 @@ export default function Home() {
                       >
                         Join waitlist
                       </Button>
-                    </div>
-
-                    {/* Right: Full Image */}
-                    <div className="relative w-full md:w-2/3 h-[300px] md:h-auto min-h-[400px] md:min-h-[600px] bg-gray-50">
-                      <Image
-                        src={map.image}
-                        alt={map.title}
-                        fill
-                        className="object-contain p-4"
-                        sizes="(max-width: 768px) 100vw, 60vw"
-                      />
                     </div>
                   </motion.div>
                 </DialogContent>
@@ -279,7 +292,7 @@ export default function Home() {
       {/* Pricing Section */}
       <section
         id="pricing"
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--primary)]/5"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-100"
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -293,7 +306,7 @@ export default function Home() {
               className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
-              Choose Your Creative Fuel
+              Pricing
             </h2>
             <p className="text-lg sm:text-base md:text-xl text-gray-600 max-w-2xl mx-auto">
               Simple pricing. Full commercial freedom. No subscriptions.
@@ -347,15 +360,11 @@ export default function Home() {
                     </li>
                     <li className="flex items-start gap-3">
                       <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">
-                        200+ Asset Library
-                      </span>
+                      <span className="text-gray-700">200+ Asset Library</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">
-                        Watermarked Exports
-                      </span>
+                      <span className="text-gray-700">Watermarked Exports</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
@@ -392,7 +401,8 @@ export default function Home() {
                 }}
               />
 
-              <Card className="relative h-full flex flex-col border-2 bg-white shadow-xl"
+              <Card
+                className="relative h-full flex flex-col border-2 bg-white shadow-xl"
                 style={{ borderColor: "var(--primary)" }}
               >
                 {/* Best Value Badge */}
@@ -415,20 +425,24 @@ export default function Home() {
                   </CardTitle>
                   <div className="text-sm text-gray-600 mb-4">The Maker</div>
                   <div className="flex items-baseline justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-gray-900">€10</span>
-                    <span className="text-lg text-gray-500">/1,000 credits</span>
+                    <span className="text-5xl font-bold text-gray-900">
+                      €10
+                    </span>
+                    <span className="text-lg text-gray-500">
+                      /1,000 credits
+                    </span>
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <ul className="space-y-4">
                     <li className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 font-medium flex items-center gap-1.5">
-                        1,000 Credits
+                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium flex items-center gap-1">
+                        1,000 Credits for landmark creation and map exports
                         <TooltipProvider delayDuration={0}>
                           <Tooltip>
                             <TooltipTrigger asChild>
-                              <Info className="h-4 w-4 text-gray-400 cursor-help" />
+                              <Info className="h-5 w-5 text-gray-400 cursor-help flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent className="bg-gray-900 text-white border-gray-800">
                               <div className="text-xs space-y-1">
@@ -452,11 +466,9 @@ export default function Home() {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <span className="text-gray-400">~</span>
-                      </div>
+                      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                       <span className="text-gray-600 text-sm">
-                        ~2 Full Map Projects
+                        ~2 Full Map Projects with 15-20 landmarks each
                       </span>
                     </li>
                   </ul>
@@ -470,7 +482,7 @@ export default function Home() {
                       color: "#1a1a1a",
                     }}
                   >
-                    Get Best Value
+                    Get Early Access
                   </Button>
                 </CardFooter>
               </Card>
@@ -493,8 +505,12 @@ export default function Home() {
                   </CardTitle>
                   <div className="text-sm text-gray-600 mb-4">The Studio</div>
                   <div className="flex items-baseline justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-gray-900">€20</span>
-                    <span className="text-lg text-gray-500">/3,000 credits</span>
+                    <span className="text-5xl font-bold text-gray-900">
+                      €20
+                    </span>
+                    <span className="text-lg text-gray-500">
+                      /3,000 credits
+                    </span>
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
@@ -502,7 +518,7 @@ export default function Home() {
                     <li className="flex items-start gap-3">
                       <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700 font-medium flex items-center gap-1.5">
-                        3,000 Credits
+                        3,000 Credits for landmark creation and map exports
                         <TooltipProvider delayDuration={0}>
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -530,9 +546,7 @@ export default function Home() {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <span className="text-gray-400">~</span>
-                      </div>
+                      <Check className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                       <span className="text-gray-600 text-sm">
                         ~7 Full Map Projects
                       </span>
@@ -561,9 +575,7 @@ export default function Home() {
             {/* Logo */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
-                >
+                <div className="w-10 h-10 rounded-full flex items-center justify-center">
                   <Image
                     src="/favicon/android-chrome-192x192.png"
                     alt="Papimap Logo"
@@ -594,7 +606,12 @@ export default function Home() {
                   className="text-gray-600 hover:text-[#FF4500] transition-colors"
                   aria-label="Reddit"
                 >
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    className="h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
                   </svg>
                 </a>
@@ -605,7 +622,12 @@ export default function Home() {
                   className="text-gray-600 hover:text-[#000000] transition-colors"
                   aria-label="X (Twitter)"
                 >
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    className="h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
@@ -620,12 +642,12 @@ export default function Home() {
                 </a>
               </div>
               <p className="text-xs text-gray-500 mt-3">
-                Join the r/illustratedmap on Reddit for more pretty map!
+                Join the <a href="https://www.reddit.com/r/illustratedmap/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#FF4500] transition-colors">r/illustratedmap</a> on Reddit for more pretty maps!
               </p>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-gray-200 text-center text-sm text-gray-600">
+          <div className="pt-4 border-t border-gray-200 text-center text-sm text-gray-600">
             <p>
               &copy; {new Date().getFullYear()} Papimap. All rights reserved.
             </p>
