@@ -18,6 +18,28 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "Papimap - The Map Builder for Creators",
   description: "Design professional, print-ready maps in minutes. From Amsterdam to your local wedding venue.",
+  openGraph: {
+    title: "Papimap - The Map Builder for Creators",
+    description: "Design professional, print-ready maps easily. From city tour to your local wedding venue.",
+    url: "https://papimap.com", // Update with your actual URL
+    siteName: "Papimap",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Papimap - Professional Map Builder",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Papimap - The Map Builder for Creators",
+    description: "Design professional, print-ready maps in minutes. From Amsterdam to your local wedding venue.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
