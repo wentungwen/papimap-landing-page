@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { CookieBanner } from "@/components/cookie-banner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,7 +53,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${nunito.variable} antialiased`}
       >
-        {/* Google Analytics */}
+        {/* Google Analytics - Always Loaded (Opt-out approach) */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-C8F52E67CX"
@@ -69,7 +70,11 @@ export default function RootLayout({
             `,
           }}
         />
+
         {children}
+
+        {/* Cookie Consent Banner */}
+        <CookieBanner />
       </body>
     </html>
   );
