@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, ArrowRight, Instagram, Info } from "lucide-react";
+import { Check, ArrowRight, Instagram, Info, Mail } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -70,7 +70,7 @@ export default function Home() {
               className="text-5xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
-              Pretty maps <br/> <span style={{ fontFamily: "'Satisfy', cursive", color: "var(--destructive)" }}>made easy</span>
+              Pretty maps <br /> <span style={{ fontFamily: "'Satisfy', cursive", color: "var(--destructive)" }}>made easy</span>
             </h1>
             <p className="text-2xl sm:text-2xl md:text-xl text-gray-600 mb-6 max-w-xs md:max-w-none mx-auto md:mx-0">
               Design custom illustrated maps for weddings, events & tourism. <b>Launching soon on February, 2026!</b>
@@ -644,6 +644,12 @@ export default function Home() {
                   <Instagram className="h-5 w-5" />
                 </a>
               </div>
+              <p className="text-sm text-gray-600 mt-4 flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                <a href="mailto:hello@papimap.com" className="hover:text-gray-900 transition-colors">
+                  hello@papimap.com
+                </a>
+              </p>
               <p className="text-xs text-gray-500 mt-3">
                 Join the <a href="https://www.reddit.com/r/illustratedmap/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#FF4500] transition-colors">r/illustratedmap</a> on Reddit for more pretty maps!
               </p>

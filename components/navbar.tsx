@@ -81,6 +81,17 @@ export function Navbar({ onOpenForm }: NavbarProps) {
 
           {/* Right: CTA Button & Mobile Menu */}
           <div className="flex items-center gap-4">
+            {/* Desktop Login Button */}
+            <Button
+              onClick={() => {
+                window.location.href = "https://app.papimap.com/login";
+              }}
+              variant="outline"
+              className="hidden sm:flex rounded-full font-semibold border-2 border-gray-300 text-slate-900 hover:bg-gray-50 transition-colors"
+            >
+              Login
+            </Button>
+
             {/* Desktop CTA Button */}
             <Button
               onClick={() => {
@@ -146,6 +157,16 @@ export function Navbar({ onOpenForm }: NavbarProps) {
               >
                 Pricing
               </a>
+              <Button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  window.location.href = "https://app.papimap.com/login";
+                }}
+                variant="outline"
+                className="w-full rounded-full font-semibold border-2 border-gray-300 text-slate-900 hover:bg-gray-50 transition-colors mt-2"
+              >
+                Login
+              </Button>
               <Button
                 onClick={() => {
                   setMobileMenuOpen(false);
