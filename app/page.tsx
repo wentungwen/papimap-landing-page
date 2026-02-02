@@ -656,8 +656,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-gray-200 text-center text-sm text-gray-600">
-            <p>
+          <div className="pt-4 border-t border-gray-200 text-center">
+            <div className="flex justify-center gap-6 mb-3">
+              <a href="/terms" className="text-xs text-gray-600 hover:text-gray-900 transition-colors">
+                Terms of Service
+              </a>
+              <a href="/privacy" className="text-xs text-gray-600 hover:text-gray-900 transition-colors">
+                Privacy Policy
+              </a>
+            </div>
+            <p className="text-xs text-gray-600">
               &copy; {new Date().getFullYear()} Papimap. All rights reserved.
             </p>
           </div>
