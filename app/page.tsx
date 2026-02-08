@@ -26,15 +26,12 @@ import {
 } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/navbar";
 import { mapShowcases, howToSteps } from "@/data/landing-data";
-import { TallyForm } from "@/components/tally-form";
-import { useState } from "react";
 
 export default function Home() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar onOpenForm={() => setIsFormOpen(true)} />
+      <Navbar />
       {/* Hero Section */}
       <section
         id="hero"
@@ -73,7 +70,7 @@ export default function Home() {
               Pretty maps <br /> <span style={{ fontFamily: "'Satisfy', cursive", color: "var(--destructive)" }}>made easy</span>
             </h1>
             <p className="text-2xl sm:text-2xl md:text-xl text-gray-600 mb-6 max-w-xs md:max-w-none mx-auto md:mx-0">
-              Design custom illustrated maps for weddings, events & tourism. <b>Launching soon on February, 2026!</b>
+              Design custom illustrated maps for weddings, events & tourism.
             </p>
 
             {/* CTA Button */}
@@ -85,24 +82,12 @@ export default function Home() {
                   backgroundColor: "var(--primary)",
                   color: "var(--primary-foreground)",
                 }}
-                onClick={() => setIsFormOpen(true)}
+                onClick={() => window.location.href = "https://app.papimap.com"}
               >
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
-
-            {/* Tally Form Modal */}
-            <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                <DialogTitle className="sr-only">
-                  Join Papimap Waitlist
-                </DialogTitle>
-                <div className="p-4">
-                  <TallyForm />
-                </div>
-              </DialogContent>
-            </Dialog>
           </motion.div>
         </div>
       </section>
@@ -271,14 +256,14 @@ export default function Home() {
                       </DialogDescription>
 
                       <Button
-                        onClick={() => setIsFormOpen(true)}
+                        onClick={() => window.location.href = "https://app.papimap.com"}
                         className="w-full rounded-full font-semibold text-base py-6"
                         style={{
                           backgroundColor: "#F2BD50",
                           color: "#1a1a1a",
                         }}
                       >
-                        Join waitlist
+                        Start Creating
                       </Button>
                     </div>
                   </motion.div>
@@ -360,7 +345,7 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="pt-3 sm:pt-6">
                   <Button
-                    onClick={() => setIsFormOpen(true)}
+                    onClick={() => window.location.href = "https://app.papimap.com"}
                     variant="outline"
                     className="w-full h-10 sm:h-12 text-xs sm:text-base font-semibold border-2 hover:bg-gray-50"
                   >
@@ -447,14 +432,14 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="pt-3 sm:pt-6">
                   <Button
-                    onClick={() => setIsFormOpen(true)}
+                    onClick={() => window.location.href = "https://app.papimap.com"}
                     className="w-full h-10 sm:h-12 text-xs sm:text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300"
                     style={{
                       backgroundColor: "var(--primary)",
                       color: "#1a1a1a",
                     }}
                   >
-                    Get Early Access
+                    Get Started
                   </Button>
                 </CardFooter>
               </Card>
@@ -513,7 +498,7 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="pt-3 sm:pt-6">
                   <Button
-                    onClick={() => setIsFormOpen(true)}
+                    onClick={() => window.location.href = "https://app.papimap.com"}
                     variant="outline"
                     className="w-full h-10 sm:h-12 text-xs sm:text-base font-semibold border-2 hover:bg-gray-50"
                   >

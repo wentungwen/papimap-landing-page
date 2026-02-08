@@ -6,11 +6,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-interface NavbarProps {
-  onOpenForm?: () => void;
-}
-
-export function Navbar({ onOpenForm }: NavbarProps) {
+export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -81,25 +77,10 @@ export function Navbar({ onOpenForm }: NavbarProps) {
 
           {/* Right: CTA Button & Mobile Menu */}
           <div className="flex items-center gap-4">
-            {/* Desktop Login Button */}
-            <Button
-              onClick={() => {
-                window.location.href = "https://app.papimap.com/login";
-              }}
-              variant="outline"
-              className="hidden sm:flex rounded-full font-semibold border-2 border-gray-300 text-slate-900 hover:bg-gray-50 transition-colors"
-            >
-              Login
-            </Button>
-
             {/* Desktop CTA Button */}
             <Button
               onClick={() => {
-                if (onOpenForm) {
-                  onOpenForm();
-                } else {
-                  scrollToTop();
-                }
+                window.location.href = "https://app.papimap.com";
               }}
               className="hidden sm:flex rounded-full font-semibold text-slate-900 transition-colors"
               style={{
@@ -114,7 +95,7 @@ export function Navbar({ onOpenForm }: NavbarProps) {
                 e.currentTarget.style.opacity = "1";
               }}
             >
-              Get Early Access
+              Get Started
             </Button>
 
             {/* Mobile Menu Button */}
@@ -160,21 +141,7 @@ export function Navbar({ onOpenForm }: NavbarProps) {
               <Button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  window.location.href = "https://app.papimap.com/login";
-                }}
-                variant="outline"
-                className="w-full rounded-full font-semibold border-2 border-gray-300 text-slate-900 hover:bg-gray-50 transition-colors mt-2"
-              >
-                Login
-              </Button>
-              <Button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  if (onOpenForm) {
-                    onOpenForm();
-                  } else {
-                    scrollToTop();
-                  }
+                  window.location.href = "https://app.papimap.com";
                 }}
                 className="w-full rounded-full font-semibold text-slate-900 mt-2 transition-colors"
                 style={{
@@ -187,7 +154,7 @@ export function Navbar({ onOpenForm }: NavbarProps) {
                   e.currentTarget.style.backgroundColor = "#F2BD50";
                 }}
               >
-                Get Early Access
+                Get Started
               </Button>
             </div>
           </div>

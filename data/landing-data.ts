@@ -2,13 +2,13 @@
 export const mapShowcases = [
   {
     id: 1,
-    title: "Rotterdam City Explorer",
+    title: "Rotterdam City Map",
     description: "A high-density urban guide designed for sightseeing efficiency. Featuring 11 key landmarks—from modern architecture to historic ports—on a clean, high-contrast base map.",
     image: "/landing-images/demos/demo-1.jpg",
   },
   {
     id: 2,
-    title: "Frankfurt Academic & Heritage Loop",
+    title: "Frankfurt Academic & Heritage Spots",
     description: "A minimalist local guide focusing on the city's intellectual and spiritual heart. Perfectly balances university hubs with historic churches for a targeted neighborhood experience.",
     image: "/landing-images/demos/demo-2.jpg",
   },
@@ -20,7 +20,7 @@ export const mapShowcases = [
   },
   {
     id: 4,
-    title: "Taipei Boutique Hotel Concierge",
+    title: "Taipei Boutique Hotel Tourism Routes",
     description: "A curated hospitality map designed to help guests navigate local gems. Focuses on 'walkable' landmarks and cultural attractions within the hotel's immediate vicinity.",
     image: "/landing-images/demos/demo-4.jpg",
   }
