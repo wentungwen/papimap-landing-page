@@ -16,13 +16,17 @@ const nunito = Nunito({
   display: "swap",
 });
 
+const siteUrl = "https://papimap.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Papimap - The Map Builder for Creators",
   description: "Design professional, print-ready maps in minutes. From Amsterdam to your local wedding venue.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Papimap - The Map Builder for Creators",
     description: "Design professional, print-ready maps easily. From city tour to your local wedding venue.",
-    url: "https://papimap.com", // Update with your actual URL
+    url: siteUrl,
     siteName: "Papimap",
     images: [
       {

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  trailingSlash: false, // Keep URLs without trailing slash so sitemap and canonicals stay consistent
 };
 
 export default nextConfig;
