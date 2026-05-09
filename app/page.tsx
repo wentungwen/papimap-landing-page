@@ -1,8 +1,18 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Check, ArrowRight, Instagram, Info, Mail } from "lucide-react";
+import {
+  Check,
+  ArrowRight,
+  Instagram,
+  Mail,
+  Play,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import Image from "next/image";
+import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,16 +28,58 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Navbar } from "@/components/navbar";
 import { mapShowcases, howToSteps } from "@/data/landing-data";
 
+/** Demo embed on the landing page */
+const DEMO_VIDEO_ID = "YpqyJLSOqIM";
+
+/**
+ * YouTube poster images: `maxresdefault` is often missing or a tiny generic
+ * placeholder until a custom HD thumb exists — it then scales up and looks
+ * blurry. `sddefault` (640×480) is reliably a real frame for almost every video.
+ */
+const DEMO_VIDEO_THUMB_URLS = [
+  `https://i.ytimg.com/vi/${DEMO_VIDEO_ID}/sddefault.jpg`,
+  `https://i.ytimg.com/vi/${DEMO_VIDEO_ID}/hqdefault.jpg`,
+  `https://i.ytimg.com/vi/${DEMO_VIDEO_ID}/mqdefault.jpg`,
+] as const;
+
 export default function Home() {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [demoThumbUrlIndex, setDemoThumbUrlIndex] = useState(0);
+
+  // Embla's loop needs total slide width >= ~2x the viewport. With few slides at
+  // ~33% each that's not enough on desktop, so we duplicate the list to guarantee
+  // a seamless wrap-around. The dots below still represent the unique maps.
+  const carouselSlides = [...mapShowcases, ...mapShowcases];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+    containScroll: false,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback(
+    (index: number) => emblaApi?.scrollTo(index),
+    [emblaApi]
+  );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -157,6 +209,86 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Demo Video Section */}
+      <section
+        id="demo-video"
+        className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[var(--primary)]/5 to-white"
+      >
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10 md:mb-12"
+          >
+            <h2
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
+              style={{ fontFamily: "var(--font-nunito)" }}
+            >
+              See It in Action
+            </h2>
+            <p className="text-lg sm:text-base md:text-xl text-gray-600 max-w-2xl mx-auto">
+              Watch a quick demo to see how easy it is to design your map.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative max-w-5xl mx-auto"
+          >
+            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-black">
+              {isVideoPlaying ? (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${DEMO_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                  title="Papimap demo video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setIsVideoPlaying(true)}
+                  aria-label="Play Papimap demo video"
+                  className="group absolute inset-0 w-full h-full cursor-pointer"
+                >
+                  <Image
+                    src={DEMO_VIDEO_THUMB_URLS[demoThumbUrlIndex]}
+                    alt="Papimap demo video thumbnail"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    unoptimized
+                    priority={false}
+                    onError={() =>
+                      setDemoThumbUrlIndex((i) =>
+                        i < DEMO_VIDEO_THUMB_URLS.length - 1 ? i + 1 : i
+                      )
+                    }
+                  />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span
+                      className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full shadow-2xl transition-transform duration-300 group-hover:scale-110"
+                      style={{ backgroundColor: "var(--primary)" }}
+                    >
+                      <Play
+                        className="h-9 w-9 sm:h-11 sm:w-11 text-gray-900 ml-1"
+                        fill="currentColor"
+                      />
+                    </span>
+                  </div>
+                </button>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Showcase Section */}
       <section id="map-demos" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -178,38 +310,48 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mapShowcases.map((map) => (
-              <Dialog key={map.id}>
-                <DialogTrigger asChild>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="relative group cursor-pointer rounded-xl overflow-hidden shadow-md border border-gray-100"
+          <div className="relative">
+            <div
+              className="overflow-hidden md:mx-12 lg:mx-14"
+              ref={emblaRef}
+            >
+              <div className="flex -ml-4 sm:-ml-6">
+                {carouselSlides.map((map, slideIndex) => (
+                  <div
+                    key={`${map.id}-${slideIndex}`}
+                    className="flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.3333%] pl-4 sm:pl-6 min-w-0"
                   >
-                    <div className="aspect-[4/3] relative overflow-hidden">
-                      <Image
-                        src={map.image}
-                        alt={map.title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                        <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-semibold text-lg">
-                          View Details
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-4 bg-white">
-                      <h3
-                        className="font-semibold text-gray-900"
-                        style={{ fontFamily: "var(--font-nunito)" }}
-                      >
-                        {map.title}
-                      </h3>
-                    </div>
-                  </motion.div>
-                </DialogTrigger>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="relative group cursor-pointer rounded-xl overflow-hidden shadow-md border border-gray-100 bg-white h-full"
+                        >
+                          <div className="aspect-[4/3] relative overflow-hidden">
+                            <Image
+                              src={map.image}
+                              alt={map.title}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                              <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-semibold text-lg">
+                                View Details
+                              </span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white">
+                            <h3
+                              className="font-semibold text-gray-900"
+                              style={{ fontFamily: "var(--font-nunito)" }}
+                            >
+                              {map.title}
+                            </h3>
+                          </div>
+                        </motion.div>
+                      </DialogTrigger>
                 <DialogContent className="w-full sm:max-w-[90vw] max-h-[95vh] overflow-y-auto p-0">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -269,7 +411,71 @@ export default function Home() {
                   </motion.div>
                 </DialogContent>
               </Dialog>
-            ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Prev / Next Arrow Buttons */}
+            <button
+              type="button"
+              onClick={scrollPrev}
+              aria-label="Previous map"
+              className="hidden md:flex absolute left-0 top-[42%] -translate-y-1/2 z-10 items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full bg-white shadow-lg border border-gray-100 text-gray-800 hover:scale-110 hover:shadow-xl active:scale-95 transition-all duration-200"
+            >
+              <ChevronLeft className="h-5 w-5 lg:h-6 lg:w-6" />
+            </button>
+            <button
+              type="button"
+              onClick={scrollNext}
+              aria-label="Next map"
+              className="hidden md:flex absolute right-0 top-[42%] -translate-y-1/2 z-10 items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full bg-white shadow-lg border border-gray-100 text-gray-800 hover:scale-110 hover:shadow-xl active:scale-95 transition-all duration-200"
+            >
+              <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6" />
+            </button>
+
+            {/* Mobile Arrow Buttons + Dots */}
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <button
+                type="button"
+                onClick={scrollPrev}
+                aria-label="Previous map"
+                className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 text-gray-800 hover:bg-gray-50 active:scale-95 transition-all duration-200"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+
+              <div className="flex items-center gap-2">
+                {mapShowcases.map((_, i) => {
+                  const isActive = selectedIndex % mapShowcases.length === i;
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => scrollTo(i)}
+                      aria-label={`Go to slide ${i + 1}`}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        isActive ? "w-8" : "w-2 bg-gray-300 hover:bg-gray-400"
+                      }`}
+                      style={
+                        isActive
+                          ? { backgroundColor: "var(--primary)" }
+                          : undefined
+                      }
+                    />
+                  );
+                })}
+              </div>
+
+              <button
+                type="button"
+                onClick={scrollNext}
+                aria-label="Next map"
+                className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 text-gray-800 hover:bg-gray-50 active:scale-95 transition-all duration-200"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
       </section>

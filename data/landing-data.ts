@@ -23,7 +23,13 @@ export const mapShowcases = [
     title: "Taipei Boutique Hotel Tourism Routes",
     description: "A curated hospitality map designed to help guests navigate local gems. Focuses on 'walkable' landmarks and cultural attractions within the hotel's immediate vicinity.",
     image: "/landing-images/demos/demo-4.jpg",
-  }
+  },
+  {
+    id: 5,
+    title: "Utrecht City Discovery Activity",
+    description: "A bold, event-friendly city map built around discovery routes: highlights the Oudegracht, activity zones, and iconic spots—from the Spoorwegmuseum to the Rietveld Schröderhuis—along walking and biking paths made easy to follow.",
+    image: "/landing-images/demos/demo-5.jpg",
+  },
 ];
 
 // How-to steps
